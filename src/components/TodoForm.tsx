@@ -67,6 +67,8 @@ const TodoForm = ({onTodoAdded} : {onTodoAdded : Function} ) => {
                 console.error("Fel från servern:", errorData);
                 throw new Error("Misslyckades med att skicka data");
             }
+            //Töm fomrmulär efter lyckat POST
+            setFormData({ title: "", description: "", status: "Ej påbörjad" });
             //trigga getTodos från app.tsx
             onTodoAdded(); 
 

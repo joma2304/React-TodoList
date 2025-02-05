@@ -23,7 +23,6 @@ function App() {
 
   const getTodos = async () => {
     try {
-
       setLoading(true); //Laddning = true
 
       const res = await fetch("https://moment2-api.onrender.com/todos")
@@ -66,6 +65,7 @@ function App() {
               && <span className="loading-animation"></span>
             }
           </div>
+
           { //Loopa genom array med todos
             todos && todos.map((todo) => (
               <Todo todo={todo} key={todo._id} onTodoUpdate={getTodos} onTodoDelete={getTodos} />
