@@ -11,16 +11,21 @@ interface Todo {
 function App() {
 
   //States
-  const [todos, setTodos] = useState<Todo[] | []>([]);
-  const [error, setError] = useState<string | null>(null);
-
+  const [todos, setTodos] = useState<Todo[] | []>([]); //För todos
+  const [error, setError] = useState<string | null>(null); //För fellmeddelande
+  const [loading, setLoading] =useState<boolean>(false); //För laddning av API
+ 
   useEffect(() => {
     getTodos();
   }, [])
 
   const getTodos = async () => {
     try {
+
+      setLoading(true); //Laddning = true
+
       const res = await fetch("https://moment2-api.onrender.com/todos")
+
       //OM response inte är ok
       if (!res.ok) {
         throw Error; //Kasta fel
@@ -35,6 +40,8 @@ function App() {
     } catch (error) {
       console.error(error);
       setError("Något gick fel vid hämtning av Todos...")
+    } finally {
+      setLoading(false); //Laddning = false
     }
   }
 
@@ -46,6 +53,11 @@ function App() {
         {
           error && <p className="error-container">{error}</p>
         }
+
+        {
+          loading && <span className="loading-animation"></span>
+        }
+
         {
           todos.map((todo) => (
             <section className="todo-item" key={todo._id}>
