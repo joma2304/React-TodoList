@@ -5,6 +5,10 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+body {
+  background-color: rgb(188, 240, 240);
+}
+
 .title {
   text-align: center;
   padding: 20px;
@@ -12,5 +16,38 @@
 
 .formtext {
   text-align: center;
+  margin-top: 40px;
   margin-bottom: 5px;
+}
+
+.todo-list {
+  max-width: 95%;
+  width: 500px;
+}
+
+/*Styling todolista*/
+.todo-item {
+  border-radius: 10px;
+  background-color: rgb(194, 206, 255);
+  margin-bottom: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 95%;
+  width: 500px;
+}
+
+.todo-item:hover {
+  background-color: rgb(147, 169, 255);
+}
+
+.todo-title {
+  padding-bottom: 5px;
+  border-bottom: 2px solid rgb(45, 73, 183);
+
+}
+
+.todo-title,
+.todo-description,
+.todo-status {
+  margin-bottom: 3px;
 }

@@ -99,7 +99,7 @@ const TodoForm = () => {
 
                     }
                 </select>
-                    <input type="submit" value="Lägg till todo" />
+                <input type="submit" value="Lägg till todo" />
             </form>
         </>
     )
