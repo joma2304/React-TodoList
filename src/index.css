@@ -1,0 +1,16 @@
+* {
+  margin: 0 auto;
+  padding: none;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.title {
+  text-align: center;
+  padding: 20px;
+}
+
+.formtext {
+  text-align: center;
+  margin-bottom: 5px;
+}
