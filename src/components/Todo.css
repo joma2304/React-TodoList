@@ -1,0 +1,44 @@
+      /*Styling todolista*/
+      .todo-item {
+        border-radius: 10px;
+        background-color: rgb(194, 206, 255);
+        margin-bottom: 8px;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 95%;
+        width: 500px;
+      }
+
+      .todo-item:hover {
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+      }
+
+      .todo-title {
+        padding-bottom: 5px;
+        border-bottom: 2px solid rgb(45, 73, 183);
+
+      }
+
+      .todo-title,
+      .todo-description,
+      .todo-status {
+        margin-bottom: 3px;
+      }
+
+      /*Ta bort knapp*/
+      .deletebtn {
+        width: 100%;
+        margin: 0 auto;
+        border: none;
+        font-weight: bold;
+        background-color: rgb(226, 19, 19);
+        color: white;
+        border-radius: 5px;
+        padding: 10px 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .deletebtn:hover {
+        background-color: rgb(151, 11, 11);
+        cursor: pointer;
+      }

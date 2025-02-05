@@ -1,6 +1,6 @@
 /*Styling för TodoForm*/
 
-form {
+.form {
     background: rgb(235, 235, 235);
     padding: 20px;
     border-radius: 10px;

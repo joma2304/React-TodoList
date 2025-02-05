@@ -1,7 +1,7 @@
 import "./TodoForm.css"
 import { useState } from "react"
 
-const TodoForm = () => {
+const TodoForm = ({onTodoAdded} : {onTodoAdded : Function} ) => {
     //Interface för formulärets data
     interface formData {
         title: string,
@@ -67,6 +67,8 @@ const TodoForm = () => {
                 console.error("Fel från servern:", errorData);
                 throw new Error("Misslyckades med att skicka data");
             }
+            //trigga getTodos från app.tsx
+            onTodoAdded(); 
 
         } catch (error) {
             console.error("Fel vid skickande av data", error);
@@ -77,7 +79,7 @@ const TodoForm = () => {
 
     return (
         <>
-            <form onSubmit={submitForm}>
+            <form className="form" onSubmit={submitForm}>
             <h2 className="formtext">Lägg till i TodoList</h2>
                 <label htmlFor="title">Att göra</label>
                 {errors.title && <span className="error-container">{errors.title}</span>}
@@ -100,8 +102,9 @@ const TodoForm = () => {
 
                     }
                 </select>
-                <input type="submit" value="&#10132; Lägg till todo" />
+                <input type="submit" value="&#10132; Lägg till todo"/>
             </form>
+            
         </>
     )
 }
