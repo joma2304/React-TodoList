@@ -78,6 +78,7 @@ const TodoForm = () => {
     return (
         <>
             <form onSubmit={submitForm}>
+            <h2 className="formtext">Lägg till i TodoList</h2>
                 <label htmlFor="title">Att göra</label>
                 {errors.title && <span className="error-container">{errors.title}</span>}
                 <input type="text" name="title" id="title" value={formData.title}
@@ -99,7 +100,7 @@ const TodoForm = () => {
 
                     }
                 </select>
-                <input type="submit" value="Lägg till todo" />
+                <input type="submit" value="&#10132; Lägg till todo" />
             </form>
         </>
     )
