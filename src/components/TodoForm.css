@@ -1,3 +1,5 @@
+/*Styling för TodoForm*/
+
 form {
     background: rgb(235, 235, 235);
     padding: 20px;
@@ -46,20 +48,23 @@ input[type=submit]:hover {
 @keyframes slideInFromLeft {
     from {
         transform: translateX(-100%);
+        background-color: rgb(255, 255, 255);
         opacity: 0;
     }
     to {
         transform: translateX(0);
+        background-color: rgb(255, 86, 86);
         opacity: 1;
     }
 }
 
 .error-container {
-    background-color: rgb(255, 30, 30);
-    font-weight: bold;
+    width: 100%;
+    background-color: rgb(255, 86, 86);
     border-radius: 5px;
-    padding: 5px;
-    color: black;
+    padding: 15px 8px;
+    font-size: 0.98em;
+    color: rgb(0, 0, 0);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     animation: slideInFromLeft 0.8s ease-out forwards; /*Animering*/
 }
