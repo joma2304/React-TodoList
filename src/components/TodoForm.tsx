@@ -29,7 +29,7 @@ const TodoForm = () => {
             validationErrors.title = "Titel på todo måste vara minst 3 bokstäver"
         }
 
-        if (!data.description || data.description.trim().length > 200) { //Inte tom, max 200 tecken (inte mellanslag bara)
+        if (data.description.length > 200) { //Valfri, max 200 tecken
             validationErrors.description = "Fyll i beskrivning av todo (max 200 tecken)"
         }
 
@@ -38,15 +38,15 @@ const TodoForm = () => {
 
     const submitForm = async (event: any) => {
         event.preventDefault();
-    
+
         const validationErrors = validateForm(formData);
         if (Object.keys(validationErrors).length > 0) { //Ifall validation innehåller fel
             setErrors(validationErrors);
             return;
         }
-    
+
         setErrors({}); // Rensa felmeddelanden
-        
+
         if (!formData.title || !formData.description || !formData.status) {
             console.error("Fel: Alla fält måste vara ifyllda!", formData);
             return;
@@ -56,24 +56,24 @@ const TodoForm = () => {
             const res = await fetch("https://moment2-api.onrender.com/todos", { //Anrop till API
                 method: "POST", //POST för att lägga till
                 headers: {
-                    "Content-Type": "application/json", 
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify(formData),
             });
-    
+
             //IFall res inte är ok
-            if (!res.ok) { 
+            if (!res.ok) {
                 const errorData = await res.json();
                 console.error("Fel från servern:", errorData);
                 throw new Error("Misslyckades med att skicka data");
             }
-    
+
         } catch (error) {
             console.error("Fel vid skickande av data", error);
         }
     };
-    
-    
+
+
 
     return (
         <>
@@ -99,7 +99,7 @@ const TodoForm = () => {
 
                     }
                 </select>
-                <input type="submit" value="Lägg till todo" />
+                    <input type="submit" value="Lägg till todo" />
             </form>
         </>
     )
