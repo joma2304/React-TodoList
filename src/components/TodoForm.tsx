@@ -2,20 +2,21 @@ import "./TodoForm.css"
 import { useState } from "react"
 
 const TodoForm = () => {
+    //Interface för formulärets data
     interface formData {
         title: string,
         description: string,
         status: string
     }
-
+    //Interface för Errordata
     interface ErrorsData {
         title?: string,
         description?: string
     }
 
     //States för formulär
-    const [formData, setFormData] = useState<formData>({ title: "", description: "", status: "ej påbörjad" })
-    const statusArr = ["påbörjad", "ej påbörjad", "avklarad"];
+    const [formData, setFormData] = useState<formData>({ title: "", description: "", status: "Ej påbörjad" })
+    const statusArr = ["Pågående", "Ej påbörjad", "Avklarad"];
 
     //State för error
     const [errors, setErrors] = useState<ErrorsData>({})
@@ -24,32 +25,55 @@ const TodoForm = () => {
 
         const validationErrors: ErrorsData = {};
 
-        if (!data.title) {
-            validationErrors.title = "Fyll i titel på todo"
+        if (data.title.length < 3) { //Måste vara minst 3 bokstäver
+            validationErrors.title = "Titel på todo måste vara minst 3 bokstäver"
         }
 
-        if (!data.description) {
-            validationErrors.description = "Fyll i beskrivning av todo"
+        if (!data.description || data.description.trim().length > 200) { //Inte tom, max 200 tecken (inte mellanslag bara)
+            validationErrors.description = "Fyll i beskrivning av todo (max 200 tecken)"
         }
 
         return validationErrors;
     })
 
-    const submitForm = ((event: any) => {
+    const submitForm = async (event: any) => {
         event.preventDefault();
-
+    
         const validationErrors = validateForm(formData);
-
-        if (Object.keys(validationErrors).length > 0) {
+        if (Object.keys(validationErrors).length > 0) { //Ifall validation innehåller fel
             setErrors(validationErrors);
-
-            console.log("HELT KLART FEL")
-        } else {
-            setErrors({}); //Sätt fel till 0
-            //Skicka data
-            console.log("INGA FEL");
+            return;
         }
-    })
+    
+        setErrors({}); // Rensa felmeddelanden
+        
+        if (!formData.title || !formData.description || !formData.status) {
+            console.error("Fel: Alla fält måste vara ifyllda!", formData);
+            return;
+        }
+        //Ifall validation är ok
+        try {
+            const res = await fetch("https://moment2-api.onrender.com/todos", { //Anrop till API
+                method: "POST", //POST för att lägga till
+                headers: {
+                    "Content-Type": "application/json", 
+                },
+                body: JSON.stringify(formData),
+            });
+    
+            //IFall res inte är ok
+            if (!res.ok) { 
+                const errorData = await res.json();
+                console.error("Fel från servern:", errorData);
+                throw new Error("Misslyckades med att skicka data");
+            }
+    
+        } catch (error) {
+            console.error("Fel vid skickande av data", error);
+        }
+    };
+    
+    
 
     return (
         <>
